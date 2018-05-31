@@ -1,12 +1,21 @@
 var RaspiCam = require('raspicam');
-var camera = new RaspiCam('photo', '../storage/photos')
+
+function getTimestamp() {
+  return (new Date()).toISOString();
+}
 
 module.exports = {
   /**
    * Take a photo
    */
   photo: function (req, res) {
+    var camera;
     try {
+      camera = new RaspiCam({
+        mode: 'photo',
+        output: './storage/photos/' + getTimestamp()
+      });
+
       camera.start();
     } catch (e) {
       res.status(500).json({
@@ -15,7 +24,7 @@ module.exports = {
     }
 
     res.json({
-        message: 'You have taken a snapshot!'
+        message: 'You have taken a photo!'
     });
   }
 }
