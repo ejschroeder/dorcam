@@ -1,5 +1,5 @@
 const app			= require('../../app')
-const express 		= require('express')
+const express = require('express')
 
 const ClassRegister = new (require('../../lib/register/classRegister.js'))()
 const ControllerRegister = new (require('../../lib/register/controllerRegister.js'))()
@@ -10,7 +10,7 @@ const PhotoController = ControllerRegister.use('photoController')
 
 module.exports = [
   new RouteGroup({
-    prefix: '/api/photo'
+    prefix: '/api'
   })
-    .get('/take', PhotoController.photo),
+    .get('/photo', PhotoController.photo),
 ]
